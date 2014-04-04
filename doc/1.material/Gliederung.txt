@@ -1,0 +1,74 @@
+"Zentrales Ausnahmemelden ohne/mit aspektorientierten Techniken"
+=========================================================================
+
+ABSTRACT 
+
+Die Behandlung und Meldung von Ausnahmen ist ein wichtiges, aber bei 
+Entwicklern oft vernachlässigtes Thema, da sie sich auf die Erstellung von 
+Funktionalität konzentrieren. 
+
+Damit Ausnahmen nicht in schwer auffindbaren Log-Dateien verschwinden oder 
+gar unterdrückt werden, ist ein zentrales Ausnahmemelden in Verbindung mit 
+konsequenter Ursachenerfassung einzuführen. 
+
+Leider sind die Mittel, Ausnahmen zu melden, in jedem Oberflächenrahmenwerk 
+verschieden und oft nur schwer in der Dokumentation zu finden. 
+
+Es werden für die populären Rahmenwerke Swing, Struts und Java Server Faces 
+Techniken der zentralisierten Ausnahmemeldung beschrieben. Manche 
+komfortablen Konstrukte wie die Struts-DispatchAction erschweren jedoch 
+zentralisiertes Ausnahmemelden. Dann kann mit aspektorientierten Techniken 
+das Ziel dennoch erreicht werden, in Verbindung mit Dependency Injection 
+Frameworks sogar ganz ohne Kenntnis des eingesetzten Oberflächenrahmenwerks. 
+ 
+GLIEDERUNG
+
+1. Warum Zentrales Ausnahmemelden?
+
+2. Schlechte Ausnahmebehandlung
+- Ausnahme ohne Diagnoseparameter werfen
+- Ausnahme unterdrücken
+- Ausnahme loggen, ohne Auftraggeber zu informieren
+- Unterschiedliche Meldungsarten (Redundanzen)
+   
+3. Empfohlene Strategie
+- Framework, z.B. MulTEx
+- Ausnahme mit Diagnoseparametern und Meldungstext
+- Exception Chaining/Treeing
+- Zentrales Ausnahmemelden
+  - Internationalisiert
+  - Wählbares Detaillierungsniveau für Ausnahmenkette/baum
+  - Verfolgen von Legacy-Verkettungen, z.B. getRootCause()
+  
+4. Beispiel-Applikation Kundenverwaltung Logikkern
+
+5. Beispiel-Oberfläche Struts 1.3.8
+
+6. Beispiel-Oberfläche Swing
+   - AbstractAction beerben, überall verwenden
+   - auf AWT-Property nur verweisen
+   - auf ThreadGroup.uncaughtException verweisen
+
+//7. Beispiel-Oberfläche JSF
+
+8. Oberflächenneutrale??? Zentralisierung mit AspectJ (Haschemi)
+   - AspectJ verweisen
+   - Motivation warum mit AspectJ
+   - Aspekt für Struts 
+   - Aspekt für Swing
+   - beide ein/aus-schaltbar über ANT
+
+9. Zentrales Exception-Logging in Fremdbibliotheken ???
+   mit AspectJ-Load-Time-Weaving
+   
+10. Fazit
+
+---------------------
+TODO Knabe
+
+- Zentrales SVN
+- Swing-Oberfläche
+
+TERMINE
+22.06.07  Artikel-Endredaktion gemeinsam
+03.07.07  Abgabetermin beim JavaMagazin
