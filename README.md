@@ -10,7 +10,8 @@ The Central Exception Reporting Sample Application.
 - It is derived from the Struts Blank application.
 - You could get the complete distribution from http://excrep.berlios.de/ by CVS
 - Now it is migrated to Assembla.
-- The place as of 2014-04-01 is at ???
+- The place as of 2014-04-01 is at https://www.assembla.com/code/excrep/git/nodes
+- It is the companion material to a german article about Central Expection Reporting in the JavaMagazin 11.07 pages 23-27.
 
 What platform does this application run on?
 

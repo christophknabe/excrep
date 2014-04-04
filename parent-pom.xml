@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+ 
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.bht-berlin.knabe</groupId>
+  <artifactId>excrep-parent</artifactId>
+  <version>2.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Central Exception Reporting Sample WebApp+SwingApp Parent POM</name>
+  <!-- All versions promoted to current version on 2014-04-04 -->
+  <properties>
+    <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+    <!-- For configuring Java version -->
+    <maven.compiler.source>7</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+    <strutsVersion>1.3.10</strutsVersion>
+    <!-- Adapt this to a version found on http://repo.maven.apache.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
+    <jettyVersion>9.1.3.v20140225</jettyVersion>
+    <multexVersion>8.3</multexVersion>
+    <messageResourceFile>MessageResources.properties</messageResourceFile>
+  </properties>
+ 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.jetty.orbit</groupId>
+      <artifactId>javax.servlet</artifactId>
+      <version>3.0.0.v201112011016</version>
+      <scope>provided</scope>
+    </dependency> 
+    <!-- Struts 1 dependencies following http://www.mkyong.com/struts/struts-hello-world-example/ -->
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+	    <artifactId>struts-core</artifactId>
+      <version>${strutsVersion}</version>
+    </dependency> 
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+	    <artifactId>struts-extras</artifactId>
+      <version>${strutsVersion}</version>
+    </dependency> 
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+	    <artifactId>struts-taglib</artifactId>
+      <version>${strutsVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.tfh-berlin.knabe</groupId>
+      <!-- Multi Tier Exception Handling Framework -->
+      <artifactId>multex</artifactId>
+      <version>${multexVersion}</version>
+    </dependency>
+  </dependencies>
+ 
+  <build>
+  <!--
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.1</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.source}</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.source}</target>
+        </configuration>
+      </plugin>  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <configuration>
+          <!-- Default configuration for all reports -->
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>javadoc</goal>
+            </goals>
+            <phase>process-classes</phase>
+            <configuration>
+              <!-- Specific configuration for the messages report -->
+              <doclet>multex.tool.ExceptionMessagesDoclet</doclet>
+              <docletArtifact>
+                <groupId>de.tfh-berlin.knabe</groupId>
+                <artifactId>multex</artifactId>
+                <version>${multexVersion}</version>
+              </docletArtifact>
+              <useStandardDocletOptions>false</useStandardDocletOptions>
+              <show>private</show>
+              <verbose>false</verbose>
+              <debug>false</debug>
+              <additionalparam>
+                    -out ${project.build.directory}/classes/${messageResourceFile}
+              </additionalparam>
+              <!-- For the project-reports page-->
+              <name>ExceptionTexts</name>
+              <description>Extraction of Exception Message Texts from Source Code</description>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jettyVersion}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+        	  <phase>test</phase>
+        	  <goals><goal>java</goal></goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>swing_ui.ClientSwingApplication</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <!-- For current MulTEx: -->
+      <id>bht-knabe-repository</id>
+      <name>BHT Knabe Maven 2 repository</name>
+      <url>http://public.beuth-hochschule.de/~knabe/mvn-repo/</url>
+    </repository>
+  </repositories>
+ 
+</project>
