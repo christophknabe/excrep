@@ -71,7 +71,7 @@ Why didn't the changes to my  `MessageResources.properties`  or other resource f
 
 - The original resource files are under  `src/main/resources/`  and copied to  `target/classes/`  during a build. 
   Change the content of `src/main/resources/MessageResources.properties` and rebuild before running it again.
-  The exception message texts extracted from the JavaDoc comments of all exceptions under `src/`
+  The exception message texts extracted from the JavaDoc comments of all exceptions under `src/main/java/`
   are collected by the  `ExceptionMessagesDoclet`  as configured for the `maven-javadoc-plugin`.
   
 Where is the article?
