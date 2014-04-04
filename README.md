@@ -19,58 +19,63 @@ What platform does this application run on?
 - Maven 2.2.1
 
 In the Maven POMs it is configured to use
+
 - Java 7, or AspectJ 7 respectively
 - Jetty 9 (Servlet 3.0 container)
 - Struts 1.3.10
 - MulTEx 8.3
 
-The file java-pom.xml manages the Struts and Swing application using simple Java, 
+The file `java-pom.xml` manages the Struts and Swing application using simple Java, 
 but framework specific mechanisms or the Template Method Pattern for centralized exception handling. 
 
-The file aspect-pom.xml manages the Struts and Swing application using AspectJ
+The file `aspect-pom.xml` manages the Struts and Swing application using AspectJ
 and comfortable aspect-oriented mechanisms for centralized exception handling. 
 
 How do I run and test the Struts web application using plain Java? 
 
-- type   mvn -f java-pom.xml clean jetty:run   at the command prompt for the web app using Struts specific ExceptionHandler.
+- type   _mvn -f java-pom.xml clean jetty:run_   at the command prompt for the web app using Struts specific ExceptionHandler.
 - Browse  http://localhost:8080/
 - Elect "Create Client"
-- Type in and Save some clients, they will be stored in file  Persistence.ser  in the working directory
+- Type in and Save some clients, they will be stored in file  `Persistence.ser`  in the working directory
 - Observe exception messages after data errors (e.g. empty birth date, birth date with some period characters)
 - You can see the stack trace of an error message by clicking on the link "Details".
 - Click button List to see the entered clients.
-- Provoke a low-level exception by making the file  Persistence.ser  read-only and trying to Save a client.
-- Stop the web app by typing <Ctrl/C> in the command window.
+- Provoke a low-level exception by making the file  `Persistence.ser`  read-only and trying to Save a client.
+- Stop the web app by typing &lt;Ctrl/C&gt; in the command window.
 
 How do i run and test the Swing application using plain Java?
 
-- type   mvn -f java-pom.xml clean test   at the command prompt for the Swing app using Template Method Pattern.
+- type   `mvn -f java-pom.xml clean test`   at the command prompt for the Swing app using Template Method Pattern.
 - A GUI will appear, where you can do the same things as above.
 - You can see the stack trace of an error message by clicking on the button "Show Stack Trace".
 - Stop the application by closing all windows of it.
 
 How do I run and test the Struts web application using AspectJ? 
 
-- type   mvn -f aspect-pom.xml clean jetty:run   at the command prompt for the web app using AspectJ for exception reporting.
+- type   `mvn -f aspect-pom.xml clean jetty:run`   at the command prompt for the web app using AspectJ for exception reporting.
 - In the stack traces you can see, that exceptions are caught by an around advice.
 
 
 How do I run and test the Swing application using AspectJ? 
 
-- type   mvn -f java-pom.xml clean test   at the command prompt for the Swing app using AspectJ for exception reporting.
+- type   `mvn -f java-pom.xml clean test`   at the command prompt for the Swing app using AspectJ for exception reporting.
 - In the stack traces you can see, that exceptions are caught by an around advice.
 
 
 Where's the Message Resources (fka Application Resources)?
 
-- It's named MessageResources.properties. The original, which you may edit, is under src/main/resources/
+- It's named `MessageResources.properties`. The original, which you may edit, is under `src/main/resources/`
 
-Why did the changes to my  MessageResources.properties  or other resource file disappear?
-Why didn't the changes to my  MessageResources.properties  or other resource file appear?
+Why did the changes to my  `MessageResources.properties`  or other resource file disappear?
+Why didn't the changes to my  `MessageResources.properties`  or other resource file appear?
 
-- The original resource files are under  src/main/resources/  and copied to  target/classes/  during a build. 
-  Change the content of src/main/resources/MessageResources.properties and rebuild before running it again.
-  The exception message texts extracted from the JavaDoc comments of all exceptions under src/
-  are collected by the  ExceptionMessagesDoclet  as configured for the maven-javadoc-plugin.
+- The original resource files are under  `src/main/resources/`  and copied to  `target/classes/`  during a build. 
+  Change the content of `src/main/resources/MessageResources.properties` and rebuild before running it again.
+  The exception message texts extracted from the JavaDoc comments of all exceptions under `src/`
+  are collected by the  `ExceptionMessagesDoclet`  as configured for the `maven-javadoc-plugin`.
+  
+Where is the article?
+
+It is in subdirectory `doc` in various formats.
 
 
