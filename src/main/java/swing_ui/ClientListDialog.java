@@ -85,8 +85,8 @@ public class ClientListDialog extends JDialog {
 		this.clientList = this.session.searchAllClients();
 		this.table.setModel(this.dataModel);
 		this.dataModel.fireTableStructureChanged();
-	    
 	}
+
 	private final class DataModel extends AbstractTableModel {
 		private static final long serialVersionUID = 3272605639423905267L;
 		

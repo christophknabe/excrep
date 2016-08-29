@@ -93,14 +93,14 @@ public class ClientSwingApplication {
 
     }//SwingFile()
 
-    protected void addButtons(JPanel buttonPanel) {
-    	JButton saveButton = new JButton(saveAction);
+    protected void addButtons(final JPanel buttonPanel) {
+    	final JButton saveButton = new JButton(saveAction);
 	    buttonPanel.add(saveButton);
-	    JButton resetButton = new JButton(resetAction);
+		final JButton resetButton = new JButton(resetAction);
 	    buttonPanel.add(resetButton);
-	    JButton deleteButton = new JButton(deleteAction);
+		final JButton deleteButton = new JButton(deleteAction);
 	    buttonPanel.add(deleteButton);
-	    JButton listButton = new JButton(listAction);
+		final JButton listButton = new JButton(listAction);
 	    buttonPanel.add(listButton);
 	}
 

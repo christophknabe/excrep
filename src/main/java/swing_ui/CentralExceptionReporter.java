@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class CentralExceptionReporter {
+
 	/**The baseName for locating the exception message text resource bundle.*/ 
 	public static final String BASE_NAME = "MessageResources";
 	

@@ -14,9 +14,6 @@ import javax.swing.AbstractAction;
 public abstract class ExceptionReportingSwingAction extends AbstractAction {
 	
 
-	/**The baseName for locating the exception message text resource bundle.*/ 
-	public static final String BASE_NAME = "MessageResources";
-	
 	/**Initializes an ExceptionReportingSwingAction.
 	 * @param name how to name the button or menu item, which is associated with the action.
 	*/
