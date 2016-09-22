@@ -1,15 +1,13 @@
 package swing_ui;
 
 import java.awt.event.ActionEvent;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
 import javax.swing.AbstractAction;
 
 /**An action for Swing, which is allowed to throw any Exception.
  * If an exception occurs during execution of the method {@link #actionPerformedWithThrows(ActionEvent)}, 
  * it will be reported to a new modal dialog blocking the causing UI component for further input, until the dialog is closed.
- * @author Christoph Knabe 2007-06-06
+ * @author Christoph Knabe
+ * @since 2007-06-06
  */
 public abstract class ExceptionReportingSwingAction extends AbstractAction {
 	

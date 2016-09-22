@@ -2,7 +2,7 @@ package fx_ui.multex;
 
 
 //Change history:
-//2016-08-13  Knabe  Created as FxAlerter replacement for multex.Swing.
+//2016-08-13  Knabe  Created as JavaFX replacement for multex.Swing.
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -50,21 +50,28 @@ public class FxAlerter {
         _resourceBundle = resourceBundle;
     }
 
-    /**Reports an exception into an FxAlerter Stage.
+    /**Reports an exception into an FxAlerter Stage offering some action buttons.
      * <br>Firstly reports the same as {@link multex.Msg#printMessages(StringBuffer, Throwable, ResourceBundle)}
      * into a pop-up Stage of appropriate size.
      * Accepting the message is done by <ul>
      *     <li> clicking on the "close window" icon, or</li>
-     *     <li> clicking on the OK-button, or</li>
-     *     <li> typing &lt;RETURN&gt; on the OK-button </li>
+     *     <li> clicking on the Close-button, or</li>
+     *     <li> typing &lt;RETURN&gt; on the Close-button </li>
      * </ul>
-     * Each of these will close the dialog box.
+     * Each of these will close the Stage.
      * <p>
-     *     The Button "Show Stack Trace" will add the compactified
+     *     The Button "Copy" will copy the currently displayed message text into the clipboard of the operating system.
+     * </p>
+     * <p>
+     *     The Button "Details" will add the compactified
      *     stack trace including the chain of all causing exceptions
      *     to the message dialog box. The contents of the compact
      *     stack trace are described at method
      *     {@link multex.Msg#printStackTrace(StringBuffer,Throwable)}.
+     *     This button will also replace itself by a "Print" button.
+     * </p>
+     * <p>
+     *     The Button "Print" will open a print dialog of the operating system in order to print the currently displayed message text.
      * </p>
      *
      * @param throwable The exception to be reported along with its causal chain
@@ -97,16 +104,16 @@ public class FxAlerter {
             final Text text = new Text(messageChain.toString());
             final HBox centerPane = _createHBox(text);
 
-            final Button detailsButton = new Button("Details");
-            detailsButton.setDefaultButton(true);
+            final Button closeButton = new Button("Close");
+            closeButton.setDefaultButton(true);
+            closeButton.setCancelButton(true);
             final Button copyButton = new Button("Copy");
-            final Button cancelButton = new Button("Cancel");
-            cancelButton.setCancelButton(true);
+            final Button detailsButton = new Button("Details");
 
             //Add the buttons into the right side into a layout pane:
             final Region spacer = new Region();
-            final HBox buttonPane = _createHBox(spacer, detailsButton, copyButton, cancelButton);
-            buttonPane.setHgrow(spacer, Priority.ALWAYS);
+            final HBox buttonPane = _createHBox(spacer, closeButton, copyButton, detailsButton);
+            HBox.setHgrow(spacer, Priority.ALWAYS);
 
             mainPane.setCenter(centerPane);
             mainPane.setBottom(buttonPane);
@@ -126,7 +133,7 @@ public class FxAlerter {
                 stage.sizeToScene();
             });
             copyButton.setOnAction(e -> _copyToClipboard(text.getText()));
-            cancelButton.setOnAction(e -> stage.close());
+            closeButton.setOnAction(e -> stage.close());
 
             //Add the layout pane to a scene
             final Scene scene = new Scene(mainPane);
@@ -170,24 +177,8 @@ public class FxAlerter {
         content.putString(string);
         clipboard.setContent(content);
     }
-    /**Appends the stack trace of i_throwable to io_text control and disables the io_detailsButton.*/
-    private void _fireDetailsButton(final Stage io_stage, BorderPane mainPane, final Button io_detailsButton, final Text io_text, final Throwable i_throwable){
-        io_detailsButton.setVisible(false);
-        final StringBuffer buffer = new StringBuffer(io_text.getText());
-        buffer.append(Util.lineSeparator);   buffer.append(Util.lineSeparator);
-        buffer.append(Msg.stackTraceFollows);
-        buffer.append(Util.lineSeparator);
-        Msg.printStackTrace(buffer, i_throwable);
-        //_append(io_text, stackTrace);
-        io_text.setText(buffer.toString());
-        io_stage.sizeToScene();
-        //TODO port from here:
-        //io_text.insert("", 0); //should scroll back upwards to character first line
-        //_dialog.pack();
-        //_stackTraceShown = true;
-    }
 
-    /**Prints i_node and the chain of its parents for test purposes.*/
+    /**Prints node and the chain of its parents for test purposes.*/
     private static void _printParents(final Node node){
         System.err.print("Node: ");
         for(Node c=node;; c=c.getParent()){

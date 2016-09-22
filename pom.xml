@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"> 
@@ -10,7 +11,35 @@
   </parent>
   <artifactId>java-excrep</artifactId>
   <packaging>war</packaging>
-  <name>Central Exception Reporting Sample WebApp+SwingApp using plain Java</name>
+  <name>Central Exception Reporting Sample WebApp + DesktopApps using plain Java</name>
   <build>
   </build>
+  <profiles>
+    <profile>
+      <!-- For a JavaFX GUI -->
+      <id>fx</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.5.0</version>
+            <executions>
+              <execution>
+                <phase>test</phase>
+                <goals>
+                  <goal>java</goal>
+                </goals>
+                <configuration>
+                  <mainClass>fx_ui.ClientFxApplication</mainClass>
+                  <arguments>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

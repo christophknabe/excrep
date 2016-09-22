@@ -20,7 +20,8 @@ import multex.Failure;
 /** Offers a simple persistence mechanism for demonstration purposes only.
  * The Set of Client object is stored on commit by serialization in a file.
  *   
- * @author Christoph Knabe 2007-05-23
+ * @author Christoph Knabe
+ * @since 2007-05-23
  */
 public class Persistence {
 	
@@ -60,21 +61,19 @@ public class Persistence {
 		return ++lastId;
 	}
 	
-	public <E> void save(final E object){
-		logger.info("save: " + object);
-		final Client client = (Client)object;
+	public <E extends Client> void save(final E client){
+		logger.info("save: " + client);
 		this.pool.add(client);
 	}
 
-	public <E> void delete(final E object){
-		logger.info("delete: " + object);
-		this.pool.remove(object);
+	public <E extends Client> void delete(final E client){
+		logger.info("delete: " + client);
+		this.pool.remove(client);
 	}
 
-	public <E> E load(final Class<E> resultClass, final long id) throws Exc {
+	public <E extends Client> E load(final Class<E> resultClass, final long id) throws Exc {
 		logger.info("load: " + id);
-		for(final Object elem: this.pool){
-			final Client client = (Client)elem;
+		for(final Client client: this.pool){
 			if(client.getId()==id){
 				return (E)client;
 			}
@@ -82,12 +81,13 @@ public class Persistence {
 		throw new Exc("Object of class {0} with id {1} not found", resultClass.getName(), new Long(id));
 	}
 	
-	public <E> List<E> search(final Class<E> queryResultClass) throws Exc {
+	public <E extends Client> List<E> search(final Class<E> queryResultClass) throws Exc {
 		logger.info("search: " + queryResultClass.getName());
 		final List<E> result = new ArrayList<E>(this.pool.size());
-		for(final Object elem: this.pool){
+		for(final Client elem: this.pool){
 			result.add((E)elem);
 		}
+        result.sort((Client a, Client b) -> (int)(a.getId()-b.getId()));
 		return result;
 	}
 

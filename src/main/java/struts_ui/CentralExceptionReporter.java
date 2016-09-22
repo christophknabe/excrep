@@ -68,8 +68,7 @@ public class CentralExceptionReporter extends ExceptionHandler {
     
 	public static ResourceBundle getBundle(final String bundleName,
 			final HttpServletRequest request) {
-		final ResourceBundle resourceBundle = ResourceBundle.getBundle(bundleName);
-		return resourceBundle;
+        return ResourceBundle.getBundle(bundleName);
 	}
 
     /**Returns from the session the last exception, or null.*/

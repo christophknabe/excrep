@@ -24,7 +24,6 @@ public class CentralExceptionReporter {
     public void reportException(final ActionEvent ev, final Exception ex) {
         final Object evSource = ev.getSource();
         final Node sourceNode = evSource instanceof Node ? (Node) evSource : null;
-		//multex.Swing.report(sourceComponent, ex, bundle);
         new FxAlerter(bundle).report(ex, sourceNode);
 	}
 }

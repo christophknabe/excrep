@@ -45,13 +45,13 @@
 <html>
 
 <head>
-    <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Fehler <%=requestURI%></title>
     <link rel="stylesheet" type="text/css" href="/static/style2/common.css">
     <link rel="stylesheet" type="text/css" href="/static/style2/jspApplication.css">
 </head>
 <body class="farbe">
-    <h3>Leider konnten wir Ihren Befehl wegen folgenden Fehlers nicht ausführen:</h3>
+    <h3>Leider konnten wir Ihren Befehl wegen folgenden Fehlers nicht ausf&uuml;hren:</h3>
 
     <%
     final Throwable servletException = (Throwable)request.getAttribute("javax.servlet.error.exception");
@@ -83,7 +83,7 @@
 			    </logic:notEqual>
 			</td>
 			<td>    
-				<a href="javascript:history.go(-1);"><span class="alleNavi">Zurück</span></a>
+				<a href="javascript:history.go(-1);"><span class="alleNavi">Zur&uuml;ck</span></a>
 			</td>
 			<td align="right"><html:link page="/"><span class="alleNavi">Home</span></html:link></td>
 		</tr>

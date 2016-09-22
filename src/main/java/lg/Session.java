@@ -11,16 +11,16 @@ import multex.Exc;
 /** Session giving access to the business logic of the client management software. */
 public interface Session {
 
-	public Client createClient(
+	Client createClient(
 		String firstName, String lastName, Date birthDate, String phone
 	) throws PhoneNumberFormatExc, IncredibleBirthDateExc, EmptyPhoneNumberExc;
 
-	public void delete(final Client client);
+	void delete(final Client client);
 
-	public Client findClient(final long id) throws Exc;
+	Client findClient(final long id) throws Exc;
 
-	public List<Client> searchAllClients() throws Exc;
+	List<Client> searchAllClients() throws Exc;
 
-	public void commit();
+	void commit();
 
 }

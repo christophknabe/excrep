@@ -12,7 +12,6 @@ public class Client implements Serializable {
 	private static final long serialVersionUID = 6240957601030194430L;
 	private static final Date beginDate = new Date(0, 0, 1); //01.01.1900
 	private static final String ALLOWED_PHONE_CHARS = "0123456789 ()/+-";
-	private static final String ALLOWED_PHONE_PATTERN = "[" + ALLOWED_PHONE_CHARS + "]*";
 
 	private final long id;
 	private String firstName;
@@ -33,9 +32,11 @@ public class Client implements Serializable {
 		if(phone.length()<=0){
 			throw new EmptyPhoneNumberExc();
 		}
-		if(!phone.matches(ALLOWED_PHONE_PATTERN)){
-			throw create(PhoneNumberFormatExc.class, phone, ALLOWED_PHONE_CHARS);
-		}
+        for(final char pc: phone.toCharArray()){
+            if(ALLOWED_PHONE_CHARS.indexOf(pc) < 0){
+                throw create(PhoneNumberFormatExc.class, phone, ALLOWED_PHONE_CHARS);
+            }
+        }
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
@@ -70,5 +71,7 @@ public class Client implements Serializable {
 	
 	/**Phone number {0} contains illegal characters. Allowed are only ''{1}''*/
 	public static class PhoneNumberFormatExc extends multex.Exc {}
+
+	public String toString(){return this.firstName + " " + this.lastName + " (" + this.id + ")";}
 	
 }
