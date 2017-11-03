@@ -1,3 +1,12 @@
-Persistence.ser
-target/
+/Persistence.ser
+/target/
+
+#Idea generated files:
 /.idea/
+/*.iml
+
+#Eclipse generated files:
+/.classpath
+/.project
+/.settings/
+

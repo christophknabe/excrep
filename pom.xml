@@ -12,6 +12,7 @@
   <artifactId>java-excrep</artifactId>
   <packaging>war</packaging>
   <name>Central Exception Reporting Sample WebApp + DesktopApps using plain Java</name>
+  
   <build>
   </build>
   <profiles>

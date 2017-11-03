@@ -169,18 +169,26 @@ public class ClientEditUI {
         final long id = getInternalId();
         try {
             if(id==Persistence.INEXISTENT_ID){
-                final Client client = ClientEditUI.this.session.createClient(firstName.getText(), lastName.getText(), getInternalBirthDate(), phone.getText());
+                final Client client = getSession().createClient(firstName.getText(), lastName.getText(), getInternalBirthDate(), phone.getText());
                 setInternalId(client.getId());
             }else{
-                final Client client = ClientEditUI.this.session.findClient(id);
+                final Client client = getSession().findClient(id);
                 client.setAttributes(firstName.getText(), lastName.getText(), getInternalBirthDate(), phone.getText());
             }
-            ClientEditUI.this.session.commit();
-            ClientEditUI.this.owner.reload();
+            getSession().commit();
+            getOwner().reload();
         } catch (Exception e) {
             throw new Failure("Cannot save client {0}", e, lastName.getText());
         }
     });
+
+	private ClientTableUI getOwner() {
+		return ClientEditUI.this.owner;
+	}
+
+	private Session getSession() {
+		return this.session;
+	}
 
     private final ExceptionReportingFxAction clearAction = new ExceptionReportingFxAction("Clear", ev -> {
         System.out.println("Clear ...");
@@ -189,10 +197,10 @@ public class ClientEditUI {
 
     private final ExceptionReportingFxAction deleteAction = new ExceptionReportingFxAction("Delete", ev -> {
         System.out.println("Delete ...");
-        final Client client = ClientEditUI.this.session.findClient(getInternalId());
-        ClientEditUI.this.session.delete(client);
-        ClientEditUI.this.session.commit();
-        ClientEditUI.this.owner.reload();
+        final Client client = getSession().findClient(getInternalId());
+        getSession().delete(client);
+        getSession().commit();
+        getOwner().reload();
         stage.close();
     });
 

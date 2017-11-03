@@ -15,7 +15,7 @@ public class ClientFxApplication extends Application {
         try {
             launch(args);
         } catch (Exception e) {
-            multex.Msg.printStackTrace(e);
+            multex.Msg.printReport(e);
         }
     }
 

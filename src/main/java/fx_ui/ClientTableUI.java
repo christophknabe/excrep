@@ -108,8 +108,12 @@ public class ClientTableUI {
 
     final ExceptionReportingFxAction createAction = new ExceptionReportingFxAction("Create", ev -> {
         System.out.println("Create ...");
-        new ClientEditUI(this, ClientTableUI.this.session);
+        new ClientEditUI(this, getSession());
     });
+
+	private Session getSession() {
+		return ClientTableUI.this.session;
+	}
 
     final ExceptionReportingFxAction editAction = new ExceptionReportingFxAction("Edit", ev -> {
         System.out.println("Edit ...");
@@ -118,7 +122,7 @@ public class ClientTableUI {
             throw new Exc("No row selected");
         }
         System.out.println("Edit " + client + " in new UI.");
-        new ClientEditUI(this, ClientTableUI.this.session, client);
+        new ClientEditUI(this, getSession(), client);
     });
 
     final ExceptionReportingFxAction deleteAction = new ExceptionReportingFxAction("Delete", ev -> {
@@ -131,9 +135,9 @@ public class ClientTableUI {
             System.out.println("Delete " + client + " from UI.");
             observableClientList.remove(client);
             System.out.println("Delete " + client + " from database.");
-            ClientTableUI.this.session.delete(client);
+            getSession().delete(client);
         }
-        ClientTableUI.this.session.commit();
+        getSession().commit();
     });
 
     /*package*/ void reload() throws Exc {

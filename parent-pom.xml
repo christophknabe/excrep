@@ -58,6 +58,13 @@
       <artifactId>jsr305</artifactId>
       <version>3.0.1</version>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <!-- Version sollte passend zur in der IDE benutzen Version sein! -->
+      <version>4.5</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
  
   <build>
