@@ -2,7 +2,7 @@ The Central Exception Reporting Sample Application Quick-Start FAQ
 ===========================================
 
                                                           Christoph Knabe, 2016-09-21
-                                                          
+
 The Central Exception Reporting Sample Application.
 
 - It's a little CRUD application for managing clients. You can create, edit, list, and delete clients.
@@ -10,7 +10,7 @@ The Central Exception Reporting Sample Application.
 - The Struts UI is derived from the Struts Blank application.
 - You could get the complete distribution from http://excrep.berlios.de/ by CVS
 - Now it is migrated to Assembla.
-- The place as of 2014-04-01 is at https://www.assembla.com/code/excrep/git/nodes
+- The place as of 2017-11-06 is at https://app.assembla.com/spaces/excrep/git/source
 - It was the companion material to a german article about Central Expection Reporting in the JavaMagazin 11.07 pages 23-27.
 
 What platform does this application now run on?
@@ -82,7 +82,7 @@ Why didn't the changes to my  `MessageResources.properties`  or other resource f
   Change the content of `src/main/resources/MessageResources.properties` and rebuild before running it again.
   The exception message texts extracted from the JavaDoc comments of all exceptions under `src/main/java/`
   are collected during the `process-classes` phase by the `ExceptionMessagesDoclet` as configured for the `maven-javadoc-plugin`.
-  
+
 Where is the article?
 
 It is in subdirectory `doc` in various formats.
