@@ -4,11 +4,14 @@ import static multex.MultexUtil.create;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 /**
  * Class with file services.
- * Created by knabe on 26.10.16.
+ * @author Christoph Knabe
+ * @since 2016-10-26
+ * @version 2018-11-01
  */
 public class FileService {
 
@@ -25,6 +28,16 @@ public class FileService {
     	//Test it by class FileServiceTest.
         return predefinedImplementation(file);
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 	private int predefinedImplementation(final File file) {
 		try{
@@ -36,7 +49,7 @@ public class FileService {
         		}
         	}
         }catch(Exception ex){  
-        	throw create(CountFailure.class, file);
+        	throw create(CountFailure.class, ex, file);
         }
 	}
 }

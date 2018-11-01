@@ -48,8 +48,11 @@ public class FileServiceTest {
 			fail("CountFailure expected");
 		}catch(CountFailure expected) {
 			final Object[] parameters = expected.getParameters();
-			assertEquals(1, parameters.length);
-			assertEquals(file, parameters[0]);
+			final String className = expected.getClass().getSimpleName();
+			assertTrue(className + " must have a Throwable as cause!", expected.getCause() instanceof Throwable);
+			assertNotNull(className + " must have parameters!", parameters);
+			assertTrue(className + " must have at least 1 parameter!", parameters.length>=1);
+			assertEquals(className + " must have the filename as parameter!", file, parameters[0]);
 		}
 	}
 
