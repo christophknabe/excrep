@@ -8,9 +8,6 @@ The Central Exception Reporting Sample Application.
 - It's a little CRUD application for managing clients. You can create, edit, list, and delete clients.
 - You can run it in 5 variants:  {Struts|Swing} * {Java|AspectJ} + JavaFX*Java
 - The Struts UI is derived from the Struts Blank application.
-- You could get the complete distribution from http://excrep.berlios.de/ by CVS
-- Now it is migrated to Assembla.
-- The place as of 2017-11-06 is at https://app.assembla.com/spaces/excrep/git/source
 - It was the companion material to a german article about Central Expection Reporting in the JavaMagazin 11.07 pages 23-27.
 
 What platform does this application now run on?
@@ -87,4 +84,7 @@ Where is the article?
 
 It is in subdirectory `doc` in various formats.
 
-
+## Repository History
+- Originally stored at http://excrep.berlios.de/ by CVS
+- From 2017-11-06 at https://app.assembla.com/spaces/excrep/git/source
+- From 2022-05-04 at https://github.com/christophknabe/excrep/
