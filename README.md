@@ -5,10 +5,10 @@ The Central Exception Reporting Sample Application Quick-Start FAQ
 
 The Central Exception Reporting Sample Application.
 
+- Demonstrates how to use Central Exception Reporting with various interface frameworks.
+- It was the companion material to a german article about Central Exception Reporting in the [JavaMagazin 11.07 pages 23-27](doc/JavaMagazin11.07p23-27_KnabeHashemi.pdf).
 - It's a little CRUD application for managing clients. You can create, edit, list, and delete clients.
 - You can run it in 5 variants:  {Struts|Swing} * {Java|AspectJ} + JavaFX*Java
-- The Struts UI is derived from the Struts Blank application.
-- It was the companion material to a german article about Central Expection Reporting in the JavaMagazin 11.07 pages 23-27.
 
 What platform does this application now run on?
 
@@ -20,7 +20,7 @@ In the Maven POMs it is configured to use
 - Java 8, or AspectJ 8 respectively
 - Jetty 9 (Servlet 3.0 container)
 - Struts 1.3.10
-- MulTEx 8.3 (an exception message text framework)
+- MulTEx 8.5 (an exception message text framework)
 
 The file `pom.xml` manages the Struts, Swing, and JavaFX application using simple Java, 
 and framework specific mechanisms or the Template Method Pattern for centralized exception reporting. 
@@ -32,7 +32,7 @@ How do I run and test the Struts web application using plain Java?
 
 - type   _mvn clean jetty:run_   at the command prompt for the web app using Struts specific ExceptionHandler.
 - Browse  http://localhost:8080/
-- Elect "Create Client"
+- Click on "Create a Client"
 - Type in and Save some clients, they will be stored in file  `Persistence.ser`  in the working directory
 - Observe exception messages after data errors (e.g. empty birth date, birth date with some period characters)
 - You can see the stack trace of an error message by clicking on the link "Details".
