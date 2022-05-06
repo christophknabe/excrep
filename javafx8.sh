@@ -1,3 +1,4 @@
+:
 #Runs the rest of the command line with JAVA_HOME defined using one of the
 #JDKs distributed by https://sdkman.io/
 
@@ -6,6 +7,8 @@
 # JAVA_HOME=/home/knabe/.sdkman/candidates/java/8.0.332.fx-librca
 
 #Example Usage: ./javafx8.sh ./mvnw clean test
+
+set -o errexit -o nounset
 
 #On Linux only the Liberica distribution of Java 8 contains JavaFX:
 jdkVersion=8.0.332.fx-librca

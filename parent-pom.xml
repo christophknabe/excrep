@@ -9,6 +9,7 @@
   <version>2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Central Exception Reporting Sample WebApp+DesktopAppa Parent POM</name>
+  
   <!-- All versions promoted to current version on 2014-04-04 -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,8 +20,9 @@
     <strutsVersion>1.3.10</strutsVersion>
     <!-- Adapt this to a version found on http://repo.maven.apache.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
     <jettyVersion>9.3.9.v20160517</jettyVersion>
-    <multexVersion>8.3</multexVersion>
+    <multexVersion>8.4</multexVersion>
     <messageResourceFile>MessageResources.properties</messageResourceFile>
+    <uiMainClass>swing_ui.ClientSwingApplication</uiMainClass>
   </properties>
  
   <dependencies>
@@ -47,7 +49,7 @@
       <version>${strutsVersion}</version>
     </dependency>
     <dependency>
-      <groupId>de.tfh-berlin.knabe</groupId>
+      <groupId>io.github.christophknabe</groupId>
       <!-- Multi Tier Exception Handling Framework -->
       <artifactId>multex</artifactId>
       <version>${multexVersion}</version>
@@ -130,7 +132,7 @@
               <!-- Specific configuration for the messages report -->
               <doclet>multex.tool.ExceptionMessagesDoclet</doclet>
               <docletArtifact>
-                <groupId>de.tfh-berlin.knabe</groupId>
+                <groupId>io.github.christophknabe</groupId>
                 <artifactId>multex</artifactId>
                 <version>${multexVersion}</version>
               </docletArtifact>
@@ -157,26 +159,19 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.1</version>
-        <executions>
-          <execution>
-        	  <phase>test</phase>
-        	  <goals><goal>java</goal></goals>
-          </execution>
-        </executions>
-        <configuration>
-          <mainClass>swing_ui.ClientSwingApplication</mainClass>
-        </configuration>
+        <executions>  
+          <execution>  
+            <phase>integration-test</phase>  
+              <goals>  
+                <goal>java</goal>  
+              </goals>
+              <configuration>
+                <mainClass>${uiMainClass}</mainClass>
+              </configuration>
+          </execution>  
+        </executions>  
       </plugin>
     </plugins>
   </build>
-
-  <repositories>
-    <repository>
-      <!-- For current MulTEx: -->
-      <id>bht-knabe-repository</id>
-      <name>BHT Knabe Maven 2 repository</name>
-      <url>http://public.beuth-hochschule.de/~knabe/mvn-repo/</url>
-    </repository>
-  </repositories>
  
 </project>

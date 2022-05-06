@@ -12,35 +12,13 @@
   <artifactId>java-excrep</artifactId>
   <packaging>war</packaging>
   <name>Central Exception Reporting Sample WebApp + DesktopApps using plain Java</name>
-  
-  <build>
-  </build>
   <profiles>
     <profile>
       <!-- For a JavaFX GUI -->
       <id>fx</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.5.0</version>
-            <executions>
-              <execution>
-                <phase>test</phase>
-                <goals>
-                  <goal>java</goal>
-                </goals>
-                <configuration>
-                  <mainClass>fx_ui.ClientFxApplication</mainClass>
-                  <arguments>
-                  </arguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
+      <properties>
+        <uiMainClass>fx_ui.ClientFxApplication</uiMainClass>
+      </properties>
     </profile>
   </profiles>
 </project>
