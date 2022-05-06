@@ -13,6 +13,7 @@
   <packaging>war</packaging>
   <properties>
     <aspectj.version>1.8.9</aspectj.version>
+    <uiMainClass>swing_ui.AspectClientSwingApplication</uiMainClass>
   </properties>
   <dependencies>
     <dependency>
@@ -57,13 +58,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <configuration>
-          <mainClass>swing_ui.AspectClientSwingApplication</mainClass>
-        </configuration>
       </plugin>
     </plugins>
   </build>  
